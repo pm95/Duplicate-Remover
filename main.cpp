@@ -141,12 +141,13 @@ int main(int argc, const char *argv[])
     Set<int> set = Set<int>();
 
     // add random integers to Set
-    for (int i = 0; i < 100; i++)
-        set.add_item(rand() % 10000);
-
-    set.print();
+    for (int i = 0; i < 1000000; i++)
+        set.add_item(rand() % 1000);
 
     vector<int> vals = set.get_unique_values();
+
+    for (int i : vals)
+        cout << i << endl;
 
     return 0;
 }
