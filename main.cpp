@@ -8,6 +8,8 @@
 
 #include <iostream>
 #include <string>
+#include <random>
+#include <vector>
 #include <unordered_map>
 
 using namespace std;
@@ -119,11 +121,32 @@ public:
         for (auto &pair : data)
             pair.second->print();
     }
+
+    vector<T> get_unique_values()
+    {
+        vector<T> result;
+        for (auto &pair : data)
+            if (pair.second->head->next_node == nullptr)
+                result.push_back(pair.first);
+        return result;
+    }
 };
 
 int main(int argc, const char *argv[])
 {
+    // seed random number generator
+    srand(time(NULL));
+
+    // instantiate new Set object
     Set<int> set = Set<int>();
+
+    // add random integers to Set
+    for (int i = 0; i < 100; i++)
+        set.add_item(rand() % 10000);
+
+    set.print();
+
+    vector<int> vals = set.get_unique_values();
 
     return 0;
 }
